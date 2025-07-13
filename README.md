@@ -40,9 +40,11 @@ http://127.0.0.1:9000
 
 ## deploy-mysql:
 	docker stack deploy --with-registry-auth -c mysql.yml mysql
+	docker stack deploy --with-registry-auth -c mysql-gce.yml mysql
 
 ## deploy-rabbitmq:
 	docker stack deploy --with-registry-auth -c rabbitmq.yml rabbitmq
+	docker stack deploy --with-registry-auth -c rabbitmq-gce.yml rabbitmq
 
 ## 離開 docker swarm
 	docker swarm leave --force
@@ -58,3 +60,18 @@ http://127.0.0.1:9000
 
 ## rm stack
 	docker stack rm airflow api crawler mysql rabbitmq
+
+## ubuntu 安裝 docker
+
+	sudo apt-get update
+	sudo apt-get install docker.io -y
+
+## 將你的帳號加入 docker group
+	sudo usermod -aG docker $USER
+
+## 登入 docker
+	docker login -u linsamtw
+
+## upload_taiwan_stock_price_to_mysql
+	docker stack deploy --with-registry-auth -c docker-compose-upload_taiwan_stock_price_to_mysql.yml upload
+	
