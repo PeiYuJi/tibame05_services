@@ -2,7 +2,7 @@ version: '3.0'  # 使用 Docker Compose 的版本 3.0，適合大部分部署場
 
 services:
   producer_crawler_finmind_duplicate:  # 定義一個服務，名稱為 crawler_twse
-    image: peiyuji/tibame_crawler:${DOCKER_IMAGE_VERSION}  # 使用的映像檔名稱與標籤（版本）
+    image: linsamtw/tibame_crawler:${DOCKER_IMAGE_VERSION}  # 使用的映像檔名稱與標籤（版本）
     hostname: "producer_crawler_finmind_duplicate"  # 設定 hostname = producer_crawler_finmind_duplicate
     command: pipenv run python crawler/producer_crawler_finmind_duplicate.py
     # swarm 設定
@@ -12,7 +12,7 @@ services:
       placement:
         # 設定在
         # node label producer = true 的機器上執行
-        constraints: [node.labels.producer == true]
+        constraints: [node.labels.producer==true]
     restart: on-failure  # 失敗才重啟, 不要頻繁重啟, 發送任務
     environment:
       - TZ=Asia/Taipei  # 設定時區為台北（UTC+8）

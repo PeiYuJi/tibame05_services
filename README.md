@@ -73,5 +73,17 @@ http://127.0.0.1:9000
 	docker login -u linsamtw
 
 ## upload_taiwan_stock_price_to_mysql
-	docker stack deploy --with-registry-auth -c docker-compose-upload_taiwan_stock_price_to_mysql.yml upload
-	
+	DOCKER_IMAGE_VERSION=0.0.7 docker stack deploy --with-registry-auth -c docker-compose-upload_taiwan_stock_price_to_mysql.yml upload
+	DOCKER_IMAGE_VERSION=0.0.9 docker stack deploy --with-registry-auth -c docker-compose-upload_taiwan_stock_price_to_mysql.yml upload
+
+## 設定 linode hostname
+	sudo hostname manager
+	sudo hostname mysql
+	sudo hostname rabbitmq
+	sudo hostname airflow
+
+## 啟動 redash
+	docker stack deploy -c docker-compose-redash.yml redash
+
+## upload_taiwan_stock_margin_purchase_short_sale_to_mysql
+	DOCKER_IMAGE_VERSION=0.0.9 docker stack deploy --with-registry-auth -c docker-compose-upload_taiwan_stock_margin_purchase_short_sale.yml upload

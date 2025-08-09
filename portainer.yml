@@ -14,7 +14,7 @@ services:
     deploy:
       mode: global                      # 在 Swarm 中的每一個節點都部署一份 agent
       placement:
-        constraints: [node.platform.os == linux]  # 限定只部署在 Linux 節點上（排除 Windows 節點）
+        constraints: [node.platform.os==linux]  # 限定只部署在 Linux 節點上（排除 Windows 節點）
 
   portainer:
     image: portainer/portainer-ce:2.0.1  # Portainer CE 2.0.1 版本
@@ -31,7 +31,7 @@ services:
       mode: replicated
       replicas: 1             # 僅部署一份 portainer server（建議放在 manager 節點）
       placement:
-        constraints: [node.role == manager]  # 限定只能部署在 manager 節點（portainer server 限制）
+        constraints: [node.role==manager]  # 限定只能部署在 manager 節點（portainer server 限制）
 
 networks:
   agent_network:
