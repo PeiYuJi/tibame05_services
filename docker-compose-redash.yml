@@ -44,7 +44,7 @@ services:
       # 修正 mysql 斷線問題
       SQLALCHEMY_ENABLE_POOL_PRE_PING: "True"
     networks:
-        - my_swarm_network
+        - etf_lib_network
 
   create_table:
     # 相關設定與 redash services 相同
@@ -76,7 +76,7 @@ services:
       # 修正 mysql 斷線問題
       SQLALCHEMY_ENABLE_POOL_PRE_PING: "True"
     networks:
-        - my_swarm_network
+        - etf_lib_network
 
   scheduler:
     # 用於 redash 相關的 scheduler 排程
@@ -107,7 +107,7 @@ services:
       # 修正 mysql 斷線問題
       SQLALCHEMY_ENABLE_POOL_PRE_PING: "True"
     networks:
-        - my_swarm_network
+        - etf_lib_network
   
   scheduled_worker:
     # 分散式中的 worker 
@@ -138,7 +138,7 @@ services:
       # 修正 mysql 斷線問題
       SQLALCHEMY_ENABLE_POOL_PRE_PING: "True"
     networks:
-        - my_swarm_network
+        - etf_lib_network
 
   adhoc_worker:
     image: redash/redash:10.1.0.b50633
@@ -168,7 +168,7 @@ services:
       # 修正 mysql 斷線問題
       SQLALCHEMY_ENABLE_POOL_PRE_PING: "True"
     networks:
-        - my_swarm_network
+        - etf_lib_network
 
   redis:
     # redis 資料庫
@@ -182,7 +182,7 @@ services:
     volumes:
       - redis-redash:/bitnami/redis/data
     networks:
-        - my_swarm_network
+        - etf_lib_network
 
   postgres:
     # postgres 資料庫
@@ -205,7 +205,7 @@ services:
         constraints: [node.labels.redash==true]
     restart: always
     networks:
-        - my_swarm_network
+        - etf_lib_network
 
   nginx:
     # 網頁伺服器
@@ -219,7 +219,7 @@ services:
       placement:
         constraints: [node.labels.redash==true]
     networks:
-        - my_swarm_network
+        - etf_lib_network
 
 networks:
   my_swarm_network:
