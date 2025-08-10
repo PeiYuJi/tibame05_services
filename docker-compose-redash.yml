@@ -222,7 +222,7 @@ services:
         - etf_lib_network
 
 networks:
-  my_swarm_network:
+  etf_lib_network:
     external: true
 
 volumes:

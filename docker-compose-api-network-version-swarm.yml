@@ -2,7 +2,7 @@ version: '3.0'  # 使用 Docker Compose 的版本 3.0，適合大部分部署場
 
 services:
   api:  # 定義一個服務，名稱為 api
-    image: linsamtw/tibame_api:${DOCKER_IMAGE_VERSION}  # 使用的映像檔名稱與標籤（版本）
+    image: peiyuji/tibame_api:${DOCKER_IMAGE_VERSION}  # 使用的映像檔名稱與標籤（版本）
     hostname: "api.{{.Task.Slot}}"  # 設定 hostname = api
     command: pipenv run uvicorn src.api.main:app --reload --host 0.0.0.0 --port 8888
     ports: 
@@ -19,7 +19,7 @@ services:
     environment:
       - TZ=Asia/Taipei  # 設定時區為台北（UTC+8）
     networks:
-      - my_swarm_network  # 將此服務連接到 my_swarm_network 網路
+      - etf_lib_network  # 將此服務連接到 my_swarm_network 網路
 
 networks:
   my_swarm_network:
